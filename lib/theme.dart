@@ -14,7 +14,7 @@ final ThemeData appTheme = ThemeData(
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(12),
       ),
-      textStyle: TextStyle(fontSize: 17, fontWeight: FontWeight.bold),
+      textStyle: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
     ),
   ),
 );
