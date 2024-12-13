@@ -162,25 +162,25 @@ class HomePage extends StatelessWidget {
     );
   }
 
-  // Widget _buildCategoryIcon(IconData icon, String label) {
-  //   return Padding(
-  //     padding: const EdgeInsets.only(right: 12.0),
-  //     child: Column(
-  //       children: [
-  //         CircleAvatar(
-  //           radius: 30,
-  //           backgroundColor: Colors.grey[200],
-  //           child: Icon(icon, size: 28, color: Colors.black),
-  //         ),
-  //         SizedBox(height: 8),
-  //         Text(
-  //           label,
-  //           style: TextStyle(fontSize: 12),
-  //         ),
-  //       ],
-  //     ),
-  //   );
-  // }
+  Widget _buildCategoryIcon(IconData icon, String label) {
+    return Padding(
+      padding: const EdgeInsets.only(right: 12.0),
+      child: Column(
+        children: [
+          CircleAvatar(
+            radius: 30,
+            backgroundColor: Colors.grey[200],
+            child: Icon(icon, size: 28, color: Colors.black),
+          ),
+          SizedBox(height: 8),
+          Text(
+            label,
+            style: TextStyle(fontSize: 12),
+          ),
+        ],
+      ),
+    );
+  }
 
   Widget _buildServiceCard(
       String title, String rating, String price, String imageUrl) {
