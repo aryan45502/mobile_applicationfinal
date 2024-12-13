@@ -27,7 +27,7 @@ class HomePage extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                'Welcome to WedPlan',
+                '',
                 style: TextStyle(
                   color: maroonColor,
                   fontSize: 28,
