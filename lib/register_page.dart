@@ -267,7 +267,7 @@ class _RegisterPageState extends State<RegisterPage> {
                 SizedBox(height: 20),
                 Center(
                   child: Text(
-                    '© 2024 WedPlan. All rights reserved.',
+                    '',
                     style: TextStyle(color: Colors.grey),
                   ),
                 ),
