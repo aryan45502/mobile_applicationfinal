@@ -90,7 +90,7 @@ class _LandingPageState extends State<LandingPage> {
               ),
             ),
           ),
-          SizedBox(height: 20),
+          SizedBox(height: 21),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16.0),
             child: Text(
