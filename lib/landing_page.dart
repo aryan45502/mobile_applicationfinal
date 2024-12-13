@@ -9,9 +9,9 @@ class _LandingPageState extends State<LandingPage> {
   final PageController _pageController = PageController();
   final List<String> imagePaths = [
     'assets/images/wed1.jpeg',
-    'assets/images/wed2.avif',
     'assets/images/wed3.jpeg',
     'assets/images/wed4.jpeg',
+    'assets/images/wed2.avif',
   ];
   int _currentIndex = 0;
 
@@ -33,30 +33,31 @@ class _LandingPageState extends State<LandingPage> {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           SizedBox(height: 20),
+          // PageView for sliding images
           Container(
             height: 200.0,
-            child: PageView.builder(
+            child: PageView(
               controller: _pageController,
               onPageChanged: (index) {
                 setState(() {
                   _currentIndex = index;
                 });
               },
-              itemCount: imagePaths.length,
-              itemBuilder: (context, index) {
+              children: imagePaths.map((path) {
                 return Container(
                   margin: EdgeInsets.symmetric(horizontal: 10.0),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(10),
                     image: DecorationImage(
-                      image: AssetImage(imagePaths[index]),
+                      image: AssetImage(path),
                       fit: BoxFit.cover,
                     ),
                   ),
                 );
-              },
+              }).toList(),
             ),
           ),
+          // Dots indicator
           SizedBox(height: 10),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -75,6 +76,7 @@ class _LandingPageState extends State<LandingPage> {
               );
             }),
           ),
+          // Text sections
           SizedBox(height: 40),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16.0),
@@ -100,6 +102,7 @@ class _LandingPageState extends State<LandingPage> {
               ),
             ),
           ),
+          // Get Started Button
           SizedBox(height: 40),
           ElevatedButton(
             style: ElevatedButton.styleFrom(
