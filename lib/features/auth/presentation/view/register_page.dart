@@ -1,5 +1,10 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:wedplan/app/di/di.dart';
+import 'package:wedplan/features/auth/presentation/view/login_page.dart';
+import 'package:wedplan/features/auth/presentation/view_model/login/login_bloc.dart';
+import 'package:wedplan/features/auth/presentation/view_model/register/register_bloc.dart';
 
 class RegisterPage extends StatefulWidget {
   const RegisterPage({super.key});
@@ -209,10 +214,14 @@ class _RegisterPageState extends State<RegisterPage> {
                 Center(
                   child: ElevatedButton(
                     onPressed: () {
-                      if (_formKey.currentState!.validate()) {
-                        // Perform registration logic
-                        Navigator.pushNamed(context, '/home');
-                      }
+                      context.read<RegisterBloc>().add(RegisterUser(
+                          context: context,
+                          fullName: _fullNameController.text,
+                          email: _emailController.text,
+                          phoneNo: _phoneController.text,
+                          gendertype: _role,
+                          weddingdate: _selectedDate.toString(),
+                          password: _passwordController.text));
                     },
                     child: const Text('Create Account'),
                   ),
@@ -229,7 +238,14 @@ class _RegisterPageState extends State<RegisterPage> {
                               TextStyle(color: Theme.of(context).primaryColor),
                           recognizer: TapGestureRecognizer()
                             ..onTap = () {
-                              Navigator.pushNamed(context, '/login');
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => BlocProvider.value(
+                                      value: getIt<LoginBloc>(),
+                                      child: const LoginPage(),
+                                    ),
+                                  ));
                             },
                         ),
                       ],
