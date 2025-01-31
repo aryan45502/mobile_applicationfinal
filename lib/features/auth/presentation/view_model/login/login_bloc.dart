@@ -7,7 +7,6 @@ import 'package:wedplan/features/auth/presentation/view_model/register/register_
 import 'package:wedplan/features/home/presentation/view/home_page.dart';
 import 'package:wedplan/features/home/presentation/view_model/home_cubit.dart';
 
-
 part 'login_event.dart';
 part 'login_state.dart';
 
@@ -34,6 +33,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
           password: event.password,
         ),
       );
+      print("login resukt: $result");
 
       result.fold(
         (failure) {
@@ -45,7 +45,10 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
           );
         },
         (token) {
-          if (token == "success") {
+          print("Login token received: $token"); // Debugging
+
+          // ✅ Fix: Check if the token is valid
+          if (token.isNotEmpty) {
             emit(state.copyWith(isLoading: false, isSuccess: true));
             add(
               NavigateHomeScreenEvent(
@@ -57,7 +60,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
             emit(state.copyWith(isLoading: false, isSuccess: false));
             showMySnackBar(
               context: event.context,
-              message: "Unexpected login result",
+              message: "Invalid token received",
               color: Colors.red,
             );
           }

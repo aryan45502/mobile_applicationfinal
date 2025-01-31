@@ -1,5 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
+import 'package:flutter/material.dart';
 
 
 import 'package:wedplan/app/usecase/usecase.dart';
@@ -14,6 +15,7 @@ class RegisterUserParams extends Equatable{
   final String password;
   final String weddingdate;
   final String gendertype;
+  final String? image;
 
   const RegisterUserParams({
     required this.fullName,
@@ -21,7 +23,8 @@ class RegisterUserParams extends Equatable{
     required this.phoneNo,
     required this.password,
     required this.weddingdate,
-    required this.gendertype
+    required this.gendertype,
+    this.image
   });
 
 
@@ -31,7 +34,8 @@ class RegisterUserParams extends Equatable{
   phoneNo='',
   password = '',
   weddingdate = '',
-  gendertype = '';
+  gendertype = '',
+  image='';
 
   @override
   List<Object?> get props => [fullName,email,phoneNo,password,weddingdate,gendertype];
@@ -48,6 +52,7 @@ class RegisterUserUsecase implements UsecaseWithParams<void, RegisterUserParams>
     final authEntity =AuthEntity(
       fullName: params.fullName, 
       email: params.email, 
+      image: params.image!,
       phoneNo: params.phoneNo,
       password: params.password,
       weddingdate: params.weddingdate,

@@ -1,47 +1,41 @@
+import 'dart:io';
+
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:wedplan/core/common/snackbar/my_snackbar.dart';
 import 'package:wedplan/features/auth/domain/use_case/register_user_usecase.dart';
-import 'package:wedplan/features/auth/presentation/view_model/login/login_bloc.dart';
-
+import 'package:wedplan/features/auth/domain/use_case/upload_image_usecase.dart';
 
 part 'register_event.dart';
 part 'register_state.dart';
 
 class RegisterBloc extends Bloc<RegisterEvent, RegisterState> {
-  // final LoginBloc _loginBloc;
-  final RegisterUserUsecase _registerUserUsecase;
+  final RegisterUserUsecase _registerUseCase;
+  final UploadImageUsecase _uploadImageUsecase;
+
   RegisterBloc({
-    // required LoginBloc loginBloc,
-    required RegisterUserUsecase registerUserUsecase,
-    })
-      : 
-      // _loginBloc = loginBloc,
-      _registerUserUsecase= registerUserUsecase,
+    required RegisterUserUsecase registerUseCase,
+    required UploadImageUsecase uploadImageUsecase,
+  })  : _registerUseCase = registerUseCase,
+        _uploadImageUsecase = uploadImageUsecase,
         super(RegisterState.initial()) {
-    // on<NavigateLoginScreen>((event, emit) => Navigator.push(
-    //     event.context,
-    //     MaterialPageRoute(
-    //       builder: (context) => BlocProvider.value(value: _loginBloc),
-    //     )));
-
-
     on<RegisterUser>(_onRegisterEvent);
+    on<UploadImage>(_onLoadImage);
   }
   void _onRegisterEvent(
     RegisterUser event,
-    Emitter<RegisterState>emit,
-  )async{
+    Emitter<RegisterState> emit,
+  ) async {
     emit(state.copyWith(isLoading: true));
-    final result = await _registerUserUsecase.call(RegisterUserParams(
-      fullName: event.fullName,
-      email: event.email,
-      phoneNo: event.phoneNo,
-      password: event.password,
-      weddingdate: event.weddingdate,
-      gendertype: event.gendertype
-    ));
+    final result = await _registerUseCase.call(RegisterUserParams(
+        fullName: event.fullName,
+        email: event.email,
+        phoneNo: event.phoneNo,
+        password: event.password,
+        image: state.imageName,
+        weddingdate: event.weddingdate,
+        gendertype: event.gendertype));
 
     result.fold(
       (l) => emit(state.copyWith(isLoading: false, isSuccess: false)),
@@ -53,6 +47,22 @@ class RegisterBloc extends Bloc<RegisterEvent, RegisterState> {
     );
   }
 
+  void _onLoadImage(
+    UploadImage event,
+    Emitter<RegisterState> emit,
+  ) async {
+    emit(state.copyWith(isLoading: true));
+    final result = await _uploadImageUsecase.call(
+      UploadImageParams(
+        file: event.file,
+      ),
+    );
 
-
+    result.fold(
+      (l) => emit(state.copyWith(isLoading: false, isSuccess: false)),
+      (r) {
+        emit(state.copyWith(isLoading: false, isSuccess: true, imageName: r));
+      },
+    );
+  }
 }

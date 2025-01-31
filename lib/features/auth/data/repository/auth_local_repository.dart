@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:dartz/dartz.dart';
 import 'package:wedplan/core/error/failure.dart';
 import 'package:wedplan/features/auth/data/data_source/local_data_source/auth_local_data_source.dart';
@@ -30,5 +32,11 @@ Future<Either<Failure, String>> loginUser(String username, String password) asyn
     return Left(LocalDatabaseFailure(message: "Login failed: ${e.toString()}"));
   }
 }
+
+  @override
+  Future<Either<Failure, String>> uploadProfilePicture(File file) {
+    // TODO: implement uploadProfilePicture
+    throw UnimplementedError();
+  }
 
 }

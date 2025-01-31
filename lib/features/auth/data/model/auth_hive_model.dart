@@ -29,11 +29,15 @@ class AuthHiveModel extends Equatable {
   @HiveField(6)
   final String gendertype;
 
+  @HiveField(7)
+  final String image;
+
   AuthHiveModel(
       {String? userId,
       required this.fullName,
       required this.email,
       required this.phoneNo,
+      required this.image,
       required this.weddingdate,
       required this.gendertype,
       required this.password})
@@ -43,6 +47,7 @@ class AuthHiveModel extends Equatable {
       {this.userId = "",
       this.fullName = "",
       this.email = "",
+      this.image = "",
       this.password = "",
       this.phoneNo = "",
       this.weddingdate = "",
@@ -55,6 +60,7 @@ class AuthHiveModel extends Equatable {
         userId: entity.userId,
         password: entity.password,
         phoneNo: entity.phoneNo,
+        image:entity.image,
         weddingdate: entity.weddingdate,
         gendertype: entity.gendertype);
   }
@@ -63,6 +69,7 @@ class AuthHiveModel extends Equatable {
         userId: userId,
         fullName: fullName,
         email: email,
+        image: image,
         phoneNo: phoneNo,
         weddingdate: weddingdate,
         gendertype: gendertype,
