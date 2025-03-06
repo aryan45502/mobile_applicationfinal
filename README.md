@@ -1,16 +1,6 @@
-# wedplan
-
-A new Flutter project.
-
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+![Screenshot_1741274695](https://github.com/user-attachments/assets/ef1c12f8-7d68-43de-a009-f3be05090809)
+![Screenshot_1741274700](https://github.com/user-attachments/assets/4e175f7c-5f7c-4379-bcb6-977b3a1c9ac5)
+![Screenshot_1741274714](https://github.com/user-attachments/assets/9eaeceed-b6c7-4da4-89cb-2ac77a2da8d6)
+![Screenshot_1741274718](https://github.com/user-attachments/assets/1e45eda2-30e8-4cec-bf00-005adf850766)
+![Screenshot_1741274720](https://github.com/user-attachments/assets/e2292d8a-53ba-461c-94bb-f226ad1fd938)
+![Screenshot_1741274948](https://github.com/user-attachments/assets/02f52682-3ef8-435d-a148-f0d9dca2ca7a)
